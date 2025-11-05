@@ -1,0 +1,20 @@
+name: GitHub Runner Demo
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Display runner info
+        run: |
+          echo "GitHub runner name: $RUNNER_NAME"
+          echo "Running on OS: $(uname -a)"
+
+      - name: Run a sample Python script
+        run: |
+          echo "print('Hello from GitHub Runner!')" > demo.py
+          python3 demo.py
