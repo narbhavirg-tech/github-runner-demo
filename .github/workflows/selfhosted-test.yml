@@ -12,7 +12,7 @@ jobs:
           echo "Machine name: $env:COMPUTERNAME"
           echo "OS Version: $(Get-ComputerInfo | Select-Object -ExpandProperty WindowsVersion)"
       
-      - name: Run a Python script
+      - name: Run PowerShell script
         run: |
-          echo "print('Hello from self-hosted Windows runner!')" > demo.py
-          python demo.py
+          Write-Host "Hello from self-hosted Windows runner!"    
+
