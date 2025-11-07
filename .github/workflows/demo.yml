@@ -2,7 +2,7 @@
 		on: [push]
 		jobs:
 		  build:
-		    runs-on: ubuntu-latest
+		    runs-on: windows-latest
 		    steps:
 		      - name: Checkout code
 		        uses: actions/checkout@v4
@@ -14,5 +14,5 @@
 		 
 		      - name: Run a sample Python script
 		        run: |
-		          echo "print('Hello from GitHub Runner!')" > demo.py
+		          echo "print('Hello from GitHub Runner from windows os!')" > demo.py
 		          python3 demo.py
