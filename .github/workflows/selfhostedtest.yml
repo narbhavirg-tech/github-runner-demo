@@ -1,0 +1,18 @@
+name: Self-Hosted Runner Test
+
+on: [push]
+
+jobs:
+  test-selfhosted:
+    runs-on: self-hosted
+    steps:
+      - name: Print Runner Info
+        run: |
+          echo "Running on self-hosted runner!"
+          echo "Machine name: $env:COMPUTERNAME"
+          echo "OS Version: $(Get-ComputerInfo | Select-Object -ExpandProperty WindowsVersion)"
+      
+       - name: Run a Python script
+        run: |
+          echo "print('Hello from self-hosted Windows runner!')" > demo.py
+          python demo.py
