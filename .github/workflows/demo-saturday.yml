@@ -1,0 +1,18 @@
+name: GitHub Runner Demo
+		on: [push]
+		jobs:
+		  build:
+		    runs-on: windows-latest
+		    steps:
+		      - name: Checkout code
+		        uses: actions/checkout@v4
+		 
+		      - name: Display runner info
+		        run: |
+		          echo "GitHub runner name: $RUNNER_NAME"
+		          echo "Running on OS: $(uname -a)"
+		 
+		      - name: Run a sample Python script
+		        run: |
+		          echo "print('Hello from GitHub Runner from windows os!')" > demo.py
+		          python3 demo.py
