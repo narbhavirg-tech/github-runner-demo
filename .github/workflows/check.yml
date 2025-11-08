@@ -1,0 +1,34 @@
+name: Demo Runner Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  demo-job:
+    runs-on: windows-latest   # You can also use 'ubuntu-latest'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show environment details
+        run: |
+          echo "Runner Name: $env:RUNNER_NAME"
+          echo "Operating System: $env:RUNNER_OS"
+          echo "Machine Architecture: $env:RUNNER_ARCH"
+          systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run a Python Script
+        run: |
+          echo "print(' Hello from GitHub Actions on Windows!')" > hello.py
+          python hello.py
+
+      - name: Confirm workflow success
+        run: echo "🎉 Workflow completed successfully!"
