@@ -1,0 +1,28 @@
+name: GitHub Runner Demo
+
+on: [push]
+
+# Ensures only the latest push runs, cancels older ones
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    # Force GitHub-hosted Windows runner (not self-hosted)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Display runner info
+        run: |
+          echo "GitHub hosted runner detected."
+          echo "Runner name: $RUNNER_NAME"
+          echo "Running on OS: $(uname -a)"
+
+      - name: Run a sample Python script
+        run: |
+          echo "print('Hello from GitHub-hosted Windows runner!')" > demo.py
+          python3 demo.py
